@@ -1144,7 +1144,9 @@ class ColorPickerSlider extends StatelessWidget {
                 return GestureDetector(
                   onPanDown: (DragDownDetails details) =>
                       getBox != null ? slideEvent(getBox, box, details.globalPosition) : null,
-                  onPanUpdate: (DragUpdateDetails details) =>
+                  // onPanUpdate: (DragUpdateDetails details) =>
+                  //     getBox != null ? slideEvent(getBox, box, details.globalPosition) : null,
+                  onPanEnd: (DragEndDetails details) =>
                       getBox != null ? slideEvent(getBox, box, details.globalPosition) : null,
                 );
               },
