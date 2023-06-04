@@ -3,9 +3,11 @@
 /// Try to create a Color Picker with other layout on your own :)
 
 import 'dart:math';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'utils.dart';
 
 /// Palette types for color picker area widget.
@@ -1144,10 +1146,11 @@ class ColorPickerSlider extends StatelessWidget {
                 return GestureDetector(
                   onPanDown: (DragDownDetails details) =>
                       getBox != null ? slideEvent(getBox, box, details.globalPosition) : null,
-                  // onPanUpdate: (DragUpdateDetails details) =>
-                  //     getBox != null ? slideEvent(getBox, box, details.globalPosition) : null,
-                  onPanEnd: (DragEndDetails details) =>
-                      getBox != null ? slideEvent(getBox, box, details.globalPosition) : null,
+                  onPanUpdate: (DragUpdateDetails details) {
+                    if (details.delta.dx == 0 && details.delta.dy == 0) {
+                      getBox != null ? slideEvent(getBox, box, details.globalPosition) : null;
+                    }
+                  },
                 );
               },
             ),
